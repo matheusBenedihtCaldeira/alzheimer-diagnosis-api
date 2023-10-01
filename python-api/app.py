@@ -1,8 +1,11 @@
 from flask import Flask, request, jsonify
 import joblib
 import numpy as np
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
 
-model = joblib.load('model/NaiveBayesAlzheimerPrediction.pkl')
+standardScaler = joblib.load('model/StandardScaler.pkl')
+model = joblib.load('model/NaiveBayesModel.pkl')
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
@@ -12,25 +15,12 @@ def index():
 @app.route('/predict', methods=['POST'])
 def predict_route():
     data = request.get_json(force=True)
+    data_values = np.array(list(data.values()))
+    data_values = data_values.reshape(1, -1)
+    standardizedData = standardScaler.transform(data_values[:,1:])
+    data_values[0,1:] = standardizedData
 
-    # Coletar os dados de entrada diretamente
-    M_F = data['M/F']
-    Age = data['Age']
-    EDUC = data['EDUC']
-    SES = data['SES']
-    MMSE = data['MMSE']
-    CDR = data['CDR']
-    eTIV = data['eTIV']
-    nWBV = data['nWBV']
-    ASF = data['ASF']
-
-    # Criar um array NumPy a partir dos valores
-    input_data = np.array([M_F, Age, EDUC, SES, MMSE, CDR, eTIV, nWBV, ASF]).reshape(1, -1)
-
-    print(input_data)
-
-    # Fazer a previsão
-    predict = model.predict(input_data)
+    predict = model.predict(data_values)
 
     return jsonify({'result: ': predict.tolist()})
 

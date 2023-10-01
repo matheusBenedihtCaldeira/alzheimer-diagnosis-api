@@ -13,13 +13,26 @@ def index():
 def predict_route():
     data = request.get_json(force=True)
 
-    predict_data = [data['M/F'], data['Age'], data['EDUC'], data['SES'], data['MMSE'],
-                     data['CDR'], data['eTIV'], data['nWBV'], data['ASF']]
+    # Coletar os dados de entrada diretamente
+    M_F = data['M/F']
+    Age = data['Age']
+    EDUC = data['EDUC']
+    SES = data['SES']
+    MMSE = data['MMSE']
+    CDR = data['CDR']
+    eTIV = data['eTIV']
+    nWBV = data['nWBV']
+    ASF = data['ASF']
 
-    input = np.array(predict_data).reshape(1, -1)
+    # Criar um array NumPy a partir dos valores
+    input_data = np.array([M_F, Age, EDUC, SES, MMSE, CDR, eTIV, nWBV, ASF]).reshape(1, -1)
 
-    predict = model.predict(input)
+    print(input_data)
+
+    # Fazer a previsão
+    predict = model.predict(input_data)
 
     return jsonify({'result: ': predict.tolist()})
+
 if __name__ == '__main__':
     app.run()

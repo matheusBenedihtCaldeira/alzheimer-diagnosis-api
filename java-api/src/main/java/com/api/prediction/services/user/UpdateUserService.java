@@ -1,5 +1,6 @@
 package com.api.prediction.services.user;
 
+import com.api.prediction.models.dto.User;
 import com.api.prediction.models.dto.UserDTO;
 import com.api.prediction.models.entities.UserEntity;
 import com.api.prediction.repositories.UserRepository;
@@ -21,7 +22,7 @@ public class UpdateUserService {
         return repository.save(userFromDB );
     }
 
-    public UserEntity convertDTO(UserDTO data){
+    public UserEntity convertDTO(User data){
         UserEntity user = new UserEntity();
         BeanUtils.copyProperties(data, user);
         return user;

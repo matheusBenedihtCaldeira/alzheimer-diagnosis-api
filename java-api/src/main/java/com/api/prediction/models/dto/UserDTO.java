@@ -1,15 +1,8 @@
 package com.api.prediction.models.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class UserDTO {
-    private Long id;
-    private String name;
-    private String email;
-    private String password;
+public record UserDTO(Long id, @NotBlank String name, @NotBlank @Email String email, @NotBlank String password) {
 }
+

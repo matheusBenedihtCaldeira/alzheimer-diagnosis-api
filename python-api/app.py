@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 @app.route('/test', methods=['GET'])
 def test_route():
-    return jsonify({'Message': 'Model Application'})
+    return jsonify({'message': 'Model Application'})
 
 #Defining prediction route, responsible for receiving data and sending it to the model
 @app.route('/predict', methods=['POST'])

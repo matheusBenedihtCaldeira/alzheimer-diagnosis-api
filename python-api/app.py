@@ -28,7 +28,7 @@ def predict_route():
     #Sending the data to the model
     predict = model.predict(data_values)
     #Returning result
-    return jsonify({'result: ': predict.tolist()})
+    return jsonify({'result': predict.tolist()[0]})
 
 if __name__ == '__main__':
     app.run()

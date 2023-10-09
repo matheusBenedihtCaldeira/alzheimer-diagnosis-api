@@ -8,6 +8,11 @@ standardScaler = joblib.load('model/StandardScaler.pkl')
 model = joblib.load('model/NaiveBayesModel.pkl')
 #Initializing flask application
 app = Flask(__name__)
+
+@app.route('/test', methods=['GET'])
+def test_route():
+    return jsonify({'Message': 'Model Application'})
+
 #Defining prediction route, responsible for receiving data and sending it to the model
 @app.route('/predict', methods=['POST'])
 def predict_route():

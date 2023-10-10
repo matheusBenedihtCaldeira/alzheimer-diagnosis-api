@@ -3,6 +3,7 @@ package com.api.prediction.services.user;
 import com.api.prediction.models.dto.UserDTO;
 import com.api.prediction.models.entities.UserEntity;
 import com.api.prediction.repositories.UserRepository;
+import com.api.prediction.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class UpdateUserService {
     private UserRepository repository;
 
     public UserEntity update(UserDTO data, Long id){
-        UserEntity userFromDB = repository.findById(id).get();
+        UserEntity userFromDB = findUserById(id);
         UserEntity userWithDataToUpdate = convertDTO(data);
         BeanUtils.copyProperties(userWithDataToUpdate, userFromDB);
         userFromDB.setId(id);
@@ -25,5 +26,9 @@ public class UpdateUserService {
         UserEntity user = new UserEntity();
         BeanUtils.copyProperties(data, user);
         return user;
+    }
+
+    public UserEntity findUserById(Long id){
+        return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("User not found!"));
     }
 }

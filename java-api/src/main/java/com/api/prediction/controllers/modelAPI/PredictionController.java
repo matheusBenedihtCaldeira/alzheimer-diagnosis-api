@@ -1,7 +1,7 @@
 package com.api.prediction.controllers.modelAPI;
 
 import com.api.prediction.config.rest.RestTemplateConfig;
-import com.api.prediction.models.dto.PredictionDTO;
+import com.api.prediction.models.dto.PredictionRequest;
 import com.api.prediction.models.dto.PredictionResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class PredictionController {
 
     String url = "http://localhost:5000/predict";
     @PostMapping
-    public ResponseEntity<PredictionResponse> prediction(@RequestBody PredictionDTO data){
+    public ResponseEntity<PredictionResponse> prediction(@RequestBody PredictionRequest data){
         ResponseEntity<PredictionResponse> response = restTemplate.restTemplate().postForEntity(url, data, PredictionResponse.class);
         PredictionResponse responseEntity = response.getBody();
         return ResponseEntity.ok().body(responseEntity);

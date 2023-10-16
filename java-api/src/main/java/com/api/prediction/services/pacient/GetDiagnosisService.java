@@ -23,8 +23,7 @@ public class GetDiagnosisService {
 
     public PacientEntity addDiagnosis(Long id, PredictionRequest data){
         PacientEntity pacient = findById(id);
-        PredictionResponse prediction = prediction(data);
-        String diagnosisResult = prediction.result();
+        String diagnosisResult = getDiagnosisResult(data);
         pacient.setDiagnosis(String.valueOf(diagnosisResult ));
         return repository.save(pacient);
     }
@@ -36,5 +35,10 @@ public class GetDiagnosisService {
 
     public PacientEntity findById(Long id){
         return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Pacient not found!"));
+    }
+
+    public String getDiagnosisResult(PredictionRequest data){
+        PredictionResponse prediction = prediction(data);
+        return prediction.result();
     }
 }

@@ -3,6 +3,7 @@ package com.api.prediction.services.user;
 import com.api.prediction.models.dto.UserDTO;
 import com.api.prediction.models.entities.UserEntity;
 import com.api.prediction.repositories.UserRepository;
+import com.api.prediction.services.exceptions.UserAlredyExistsException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,6 +16,10 @@ public class RegisterUserService {
     private UserRepository repository;
 
     public UserEntity register(UserDTO data){
+        UserEntity userExist = repository.findByEmail(data.email());
+        if(userExist != null) {
+            throw new UserAlredyExistsException("User alredy exist with e-mail: " + data.email());
+        }
         UserEntity user = convertDTO(data);
         user.setPassword(encryptPassword(user.getPassword()));
         return repository.save(user);

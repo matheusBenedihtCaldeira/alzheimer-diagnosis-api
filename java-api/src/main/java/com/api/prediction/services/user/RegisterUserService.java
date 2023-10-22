@@ -15,9 +15,8 @@ public class RegisterUserService {
     private UserRepository repository;
 
     public UserEntity register(UserDTO data){
-        String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
         UserEntity user = convertDTO(data);
-        user.setPassword(encryptedPassword);
+        user.setPassword(encryptPassword(user.getPassword()));
         return repository.save(user);
     }
 
@@ -25,5 +24,10 @@ public class RegisterUserService {
         UserEntity user = new UserEntity();
         BeanUtils.copyProperties(data, user);
         return user;
+    }
+
+    public String encryptPassword(String password){
+        String encryptedPassword = new BCryptPasswordEncoder().encode(password);
+        return encryptedPassword;
     }
 }

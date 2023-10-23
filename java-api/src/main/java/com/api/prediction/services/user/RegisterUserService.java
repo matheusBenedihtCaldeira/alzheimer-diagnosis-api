@@ -16,10 +16,7 @@ public class RegisterUserService {
     private UserRepository repository;
 
     public UserEntity register(UserDTO data){
-        UserEntity userExist = repository.findByEmail(data.email());
-        if(userExist != null) {
-            throw new UserAlredyExistsException("User alredy exist with e-mail: " + data.email());
-        }
+        userAlredyExist(data.email());
         UserEntity user = convertDTO(data);
         user.setPassword(encryptPassword(user.getPassword()));
         return repository.save(user);
@@ -34,5 +31,12 @@ public class RegisterUserService {
     public String encryptPassword(String password){
         String encryptedPassword = new BCryptPasswordEncoder().encode(password);
         return encryptedPassword;
+    }
+
+    public void userAlredyExist(String email){
+        UserEntity userExist = repository.findByEmail(email);
+        if(userExist != null){
+            throw new UserAlredyExistsException("User alredy exist with e-mail: " + email);
+        }
     }
 }

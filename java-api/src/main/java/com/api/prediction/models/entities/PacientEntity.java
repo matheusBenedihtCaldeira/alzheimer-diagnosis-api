@@ -15,8 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Table(name = "tb_pacients")
 public class PacientEntity {
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     @Column(unique = true)

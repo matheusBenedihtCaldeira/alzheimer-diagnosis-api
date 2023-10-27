@@ -1,10 +1,10 @@
-package com.api.prediction.services.pacient;
+package com.api.prediction.services.patient;
 
 import com.api.prediction.config.rest.RestTemplateConfig;
 import com.api.prediction.models.dto.PredictionRequest;
 import com.api.prediction.models.dto.PredictionResponse;
-import com.api.prediction.models.entities.PacientEntity;
-import com.api.prediction.repositories.PacientRepository;
+import com.api.prediction.models.entities.PatientEntity;
+import com.api.prediction.repositories.PatientRepository;
 import com.api.prediction.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,18 +14,18 @@ import org.springframework.stereotype.Service;
 public class GetDiagnosisService {
 
     @Autowired
-    private PacientRepository repository;
+    private PatientRepository repository;
 
     @Autowired
     private RestTemplateConfig restTemplate;
 
     String url = "http://localhost:5000/predict";
 
-    public PacientEntity addDiagnosis(Long id, PredictionRequest data){
-        PacientEntity pacient = findById(id);
+    public PatientEntity addDiagnosis(Long id, PredictionRequest data){
+        PatientEntity patient = findById(id);
         String diagnosisResult = getDiagnosisResult(data);
-        pacient.setDiagnosis(String.valueOf(diagnosisResult ));
-        return repository.save(pacient);
+        patient.setDiagnosis(String.valueOf(diagnosisResult ));
+        return repository.save(patient);
     }
 
     public PredictionResponse prediction(PredictionRequest data){
@@ -33,8 +33,8 @@ public class GetDiagnosisService {
         return response.getBody();
     }
 
-    public PacientEntity findById(Long id){
-        return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Pacient not found!"));
+    public PatientEntity findById(Long id){
+        return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Patient not found!"));
     }
 
     public String getDiagnosisResult(PredictionRequest data){

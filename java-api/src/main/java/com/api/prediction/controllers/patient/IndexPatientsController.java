@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/patients")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class IndexPatientsController {
 
     @Autowired

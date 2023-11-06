@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/api/update")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UpdateUserController {
 
     @Autowired

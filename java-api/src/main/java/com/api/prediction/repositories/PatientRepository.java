@@ -10,4 +10,5 @@ import java.util.List;
 public interface PatientRepository extends JpaRepository<PatientEntity, Long> {
     PatientEntity findPatientByCpf(String cpf);
     List<PatientEntity> findByNameContainingIgnoreCase(String name);
+    List<PatientEntity> findByDiagnosisIgnoreCase(String diagnosis);
 }

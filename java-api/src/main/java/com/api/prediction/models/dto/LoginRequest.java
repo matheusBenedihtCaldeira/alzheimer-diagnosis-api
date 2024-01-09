@@ -1,4 +1,4 @@
 package com.api.prediction.models.dto;
 
-public record LoginRequest(String email, String password) {
+public record LoginRequest(String accessKey, String password) {
 }

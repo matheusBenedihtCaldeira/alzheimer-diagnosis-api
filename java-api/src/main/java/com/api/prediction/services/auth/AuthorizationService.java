@@ -1,5 +1,6 @@
 package com.api.prediction.services.auth;
 
+import com.api.prediction.models.entities.UserEntity;
 import com.api.prediction.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +16,6 @@ public class AuthorizationService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return repository.findByEmail(username);
+        return repository.findByAccessKey(username);
     }
 }

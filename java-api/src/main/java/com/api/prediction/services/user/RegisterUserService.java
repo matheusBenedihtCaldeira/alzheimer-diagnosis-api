@@ -16,7 +16,7 @@ public class RegisterUserService {
     private UserRepository repository;
 
     public UserEntity register(UserDTO data){
-        userAlredyExist(data.email());
+        userAlredyExist(data.accessKey());
         UserEntity user = convertDTO(data);
         user.setPassword(encryptPassword(user.getPassword()));
         return repository.save(user);
@@ -33,10 +33,10 @@ public class RegisterUserService {
         return encryptedPassword;
     }
 
-    public void userAlredyExist(String email){
-        UserEntity userExist = repository.findByEmail(email);
+    public void userAlredyExist(String accessKey){
+        UserEntity userExist = repository.findByAccessKey(accessKey);
         if(userExist != null){
-            throw new UserAlredyExistsException("User alredy exist with e-mail: " + email);
+            throw new UserAlredyExistsException("Access key already registered: " + accessKey);
         }
     }
 }

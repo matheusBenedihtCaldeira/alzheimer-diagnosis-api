@@ -22,7 +22,7 @@ public class UserEntity implements UserDetails {
     private Long id;
     private String name;
     @Column(unique = true)
-    private String email;
+    private String accessKey;
     private String password;
     private Role role;
 
@@ -34,7 +34,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return accessKey;
     }
 
     @Override

@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: ms-user
+  config:
+    import : "configserver:"
+  profiles:
+    active: test
+server:
+  port: 8001

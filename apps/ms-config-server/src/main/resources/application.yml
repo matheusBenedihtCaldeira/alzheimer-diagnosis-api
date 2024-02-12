@@ -1,0 +1,10 @@
+#Server config
+server:
+  port: 8888
+#Spring config
+spring:
+  application:
+    name: ms-config-server
+  profiles:
+    active:
+      - native

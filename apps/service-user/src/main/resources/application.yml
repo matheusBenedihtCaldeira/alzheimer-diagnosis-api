@@ -1,7 +1,7 @@
 #Application config
 spring:
   application:
-    name: ms-user
+    name: service-user
   config:
     import : "configserver:"
   profiles:

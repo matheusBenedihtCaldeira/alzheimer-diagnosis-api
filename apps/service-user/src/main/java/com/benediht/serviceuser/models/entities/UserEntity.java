@@ -1,6 +1,6 @@
-package com.benediht.msuser.models.entities;
+package com.benediht.serviceuser.models.entities;
 
-import com.benediht.msuser.models.enums.Role;
+import com.benediht.serviceuser.models.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +25,8 @@ public class UserEntity {
     @Column(unique = true)
     private String email;
     private String password;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     private Role role;
     @CreationTimestamp
     private LocalDateTime cratedAt;

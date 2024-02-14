@@ -1,4 +1,4 @@
-package com.benediht.msuser.models.enums;
+package com.benediht.serviceuser.models.enums;
 
 public enum Role {
     ADMIN("admin"),

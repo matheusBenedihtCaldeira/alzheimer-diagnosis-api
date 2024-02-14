@@ -16,7 +16,7 @@
 
   <modules>
     <module>eureka-server</module>
-    <module>service-config-server</module>
+    <module>config-server</module>
     <module>service-user</module>
   </modules>
 

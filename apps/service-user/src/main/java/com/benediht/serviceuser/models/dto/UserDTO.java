@@ -1,6 +1,6 @@
-package com.benediht.msuser.models.dto;
+package com.benediht.serviceuser.models.dto;
 
-import com.benediht.msuser.models.enums.Role;
+import com.benediht.serviceuser.models.enums.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 

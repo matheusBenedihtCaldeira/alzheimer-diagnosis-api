@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.benediht</groupId>
-	<artifactId>service-config-server</artifactId>
+	<artifactId>config-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>service-config-server</name>
+	<name>config-server</name>
 	<description>Config server</description>
 	<properties>
 		<java.version>21</java.version>

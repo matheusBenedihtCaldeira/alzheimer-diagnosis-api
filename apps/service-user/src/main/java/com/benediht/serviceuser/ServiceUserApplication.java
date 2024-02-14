@@ -1,4 +1,4 @@
-package com.benediht.msuser;
+package com.benediht.serviceuser;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-public class MsUserApplication {
+public class ServiceUserApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MsUserApplication.class, args);
+		SpringApplication.run(ServiceUserApplication.class, args);
 	}
 
 }

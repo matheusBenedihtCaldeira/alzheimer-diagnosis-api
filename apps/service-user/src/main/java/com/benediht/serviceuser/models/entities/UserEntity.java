@@ -29,7 +29,7 @@ public class UserEntity {
     @Column(name = "role")
     private Role role;
     @CreationTimestamp
-    private LocalDateTime cratedAt;
+    private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 }

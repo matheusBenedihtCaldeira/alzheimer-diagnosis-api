@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.benediht</groupId>
-	<artifactId>ms-user</artifactId>
+	<artifactId>service-user</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ms-user</name>
+	<name>service-user</name>
 	<description>User service</description>
 	<properties>
 		<java.version>21</java.version>

@@ -16,8 +16,8 @@
 
   <modules>
     <module>eureka-server</module>
-    <module>ms-config-server</module>
-    <module>ms-user</module>
+    <module>service-config-server</module>
+    <module>service-user</module>
   </modules>
 
 </project>

@@ -1,5 +1,6 @@
 package com.benediht.serviceuser.services.user.impl;
 
+import com.benediht.serviceuser.exceptions.UserNotFoundException;
 import com.benediht.serviceuser.models.dto.UserDTO;
 import com.benediht.serviceuser.models.entities.UserEntity;
 import com.benediht.serviceuser.repositories.UserRepository;
@@ -23,10 +24,16 @@ public class UpdateUserServiceImpl implements UpdateUserService {
 
     @Override
     public void updateUser(Long id, UserDTO data) {
-        UserEntity userWithDataToUpdate = convertDTO(data);
-        UserEntity userFromDB = findUserByIdService.findUserById(id);
-        updateData(userWithDataToUpdate, userFromDB);
-        repository.save(userFromDB);
+        try{
+            if (!userExists(id)) throw new UserNotFoundException("User not found!");
+            UserEntity userWithDataToUpdate = convertDTO(data);
+            UserEntity userFromDB = findUserByIdService.findUserById(id);
+            updateData(userWithDataToUpdate, userFromDB);
+            repository.save(userFromDB);
+        }catch (Exception e){
+            log.error("{}", e.getMessage());
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     private void updateData(UserEntity dataToUpdate, UserEntity dataFromDB){
@@ -38,5 +45,9 @@ public class UpdateUserServiceImpl implements UpdateUserService {
         UserEntity user = new UserEntity();
         BeanUtils.copyProperties(data, user);
         return user;
+    }
+
+    private boolean userExists(Long id){
+        return repository.findById(id).isPresent();
     }
 }

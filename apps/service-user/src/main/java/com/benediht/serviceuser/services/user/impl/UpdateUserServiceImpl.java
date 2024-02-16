@@ -4,6 +4,7 @@ import com.benediht.serviceuser.models.dto.UserDTO;
 import com.benediht.serviceuser.models.entities.UserEntity;
 import com.benediht.serviceuser.repositories.UserRepository;
 import com.benediht.serviceuser.services.user.UpdateUserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.catalina.User;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Log4j2
 @RequiredArgsConstructor
+@Valid
 public class UpdateUserServiceImpl implements UpdateUserService {
 
     private final UserRepository repository;

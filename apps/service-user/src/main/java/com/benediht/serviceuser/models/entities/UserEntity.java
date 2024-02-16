@@ -2,6 +2,7 @@ package com.benediht.serviceuser.models.entities;
 
 import com.benediht.serviceuser.models.enums.Role;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,11 +21,16 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
     private String firstName;
+    @NotBlank
     private String lastName;
+    @NotBlank
     @Column(unique = true)
     private String email;
+    @NotBlank
     private String password;
+    @NotBlank
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Role role;

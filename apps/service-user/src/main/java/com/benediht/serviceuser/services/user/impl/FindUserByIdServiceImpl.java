@@ -1,5 +1,6 @@
 package com.benediht.serviceuser.services.user.impl;
 
+import com.benediht.serviceuser.exceptions.UserNotFoundException;
 import com.benediht.serviceuser.models.entities.UserEntity;
 import com.benediht.serviceuser.repositories.UserRepository;
 import com.benediht.serviceuser.services.user.FindUserByIdService;
@@ -21,7 +22,7 @@ public class FindUserByIdServiceImpl implements FindUserByIdService {
     public UserEntity findUserById(Long id) {
         try {
             log.info("Find User By Id Service ::: Received id: {}", id);
-            UserEntity user = repository.findById(id).get();
+            UserEntity user = repository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found!"));
             log.info("Find User By Id Service ::: User found: {}", user);
             return user;
         }catch (Exception e){

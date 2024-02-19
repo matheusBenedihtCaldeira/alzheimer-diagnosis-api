@@ -17,7 +17,6 @@ public class FindUserByIdServiceImpl implements FindUserByIdService {
 
     private final UserRepository repository;
 
-
     @Override
     public UserEntity findUserById(Long id) {
         try {

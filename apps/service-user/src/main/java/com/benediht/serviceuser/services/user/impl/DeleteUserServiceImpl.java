@@ -20,8 +20,13 @@ public class DeleteUserServiceImpl implements DeleteUserService {
 
     @Override
     public void delete(Long id) {
-        UserEntity user = findUserByIdService.findUserById(id);
-        repository.delete(user);
-        log.info("Delete User Service ::: Deleting user with id: {}", user.getId());
+        try{
+            UserEntity user = findUserByIdService.findUserById(id);
+            log.info("Delete User Service ::: Deleting user with id: {}", user.getId());
+            repository.delete(user);
+        }catch (Exception e){
+            log.error("{}", e.getMessage());
+            throw new RuntimeException(e.getMessage());
+        }
     }
 }

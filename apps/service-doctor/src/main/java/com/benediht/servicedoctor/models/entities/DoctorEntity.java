@@ -34,7 +34,6 @@ public class DoctorEntity {
     private String cellphone;
     @NotBlank
     private String password;
-    @NotBlank
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp

@@ -9,7 +9,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
         <module name="eureka-server" />
-        <module name="service-user" />
       </profile>
       <profile name="Annotation profile for apps" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -21,6 +20,7 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
         </processorPath>
         <module name="service-doctor" />
+        <module name="service-user" />
       </profile>
     </annotationProcessing>
   </component>

@@ -5,5 +5,5 @@ import com.benediht.servicedoctor.models.entities.DoctorEntity;
 import jakarta.validation.constraints.NotNull;
 
 public interface RegisterDoctorService {
-    DoctorEntity register(@NotNull DoctorDTO data);
+    DoctorEntity register(DoctorDTO data);
 }

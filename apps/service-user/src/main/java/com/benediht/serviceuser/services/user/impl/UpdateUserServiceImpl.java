@@ -3,6 +3,7 @@ package com.benediht.serviceuser.services.user.impl;
 import com.benediht.serviceuser.exceptions.UserNotFoundException;
 import com.benediht.serviceuser.models.dto.UserDTO;
 import com.benediht.serviceuser.models.entities.UserEntity;
+import com.benediht.serviceuser.models.mapper.UserMapper;
 import com.benediht.serviceuser.repositories.UserRepository;
 import com.benediht.serviceuser.services.user.UpdateUserService;
 import jakarta.validation.Valid;
@@ -16,17 +17,17 @@ import org.springframework.stereotype.Service;
 @Service
 @Log4j2
 @RequiredArgsConstructor
-@Valid
 public class UpdateUserServiceImpl implements UpdateUserService {
 
     private final UserRepository repository;
     private final FindUserByIdServiceImpl findUserByIdService;
+    private final UserMapper userMapper;
 
     @Override
     public void updateUser(Long id, UserDTO data) {
         try{
             if (!userExists(id)) throw new UserNotFoundException("User not found!");
-            UserEntity userWithDataToUpdate = convertDTO(data);
+            UserEntity userWithDataToUpdate = userMapper.userDtoToUserEntity(data);
             UserEntity userFromDB = findUserByIdService.findUserById(id);
             updateData(userWithDataToUpdate, userFromDB);
             repository.save(userFromDB);
@@ -41,12 +42,6 @@ public class UpdateUserServiceImpl implements UpdateUserService {
         dataToUpdate.setCreatedAt(dataFromDB.getCreatedAt());
         BeanUtils.copyProperties(dataToUpdate, dataFromDB);
     }
-    private UserEntity convertDTO(UserDTO data){
-        UserEntity user = new UserEntity();
-        BeanUtils.copyProperties(data, user);
-        return user;
-    }
-
     private boolean userExists(Long id){
         return repository.findById(id).isPresent();
     }

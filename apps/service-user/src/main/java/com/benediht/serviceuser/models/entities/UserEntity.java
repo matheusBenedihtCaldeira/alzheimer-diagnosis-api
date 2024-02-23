@@ -22,18 +22,16 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
+    @Column(nullable = false    )
     private String firstName;
-    @NotBlank
+    @Column(nullable = false)
     private String lastName;
-    @NotBlank
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
-    @NotBlank
+    @Column(nullable = false)
     private String password;
-    @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "role")
+    @Column(name = "role", nullable = false)
     private Role role;
     @CreationTimestamp
     private LocalDateTime createdAt;

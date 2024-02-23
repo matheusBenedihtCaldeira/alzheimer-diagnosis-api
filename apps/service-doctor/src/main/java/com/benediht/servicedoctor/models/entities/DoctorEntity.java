@@ -20,19 +20,17 @@ public class DoctorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
+    @Column(nullable = false)
     private String firstName;
-    @NotBlank
+    @Column(nullable = false)
     private String lastName;
-    @NotBlank
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String crm;
-    @Column(unique = true)
-    @NotBlank
+    @Column(unique = true, nullable = false)
     private String email;
-    @NotBlank
+    @Column(nullable = false)
     private String cellphone;
-    @NotBlank
+    @Column(nullable = false)
     private String password;
     @CreationTimestamp
     private LocalDateTime createdAt;

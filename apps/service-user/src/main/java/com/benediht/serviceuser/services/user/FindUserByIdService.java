@@ -1,10 +1,10 @@
 package com.benediht.serviceuser.services.user;
 
-import com.benediht.serviceuser.models.entities.UserEntity;
-import jakarta.validation.constraints.NotBlank;
+import com.benediht.serviceuser.models.dto.FindUserByIdResponseDTO;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
 public interface FindUserByIdService {
 
-    UserEntity findUserById(@NotNull Long id);
+    FindUserByIdResponseDTO findUserById(@Valid @NotNull Long id);
 }

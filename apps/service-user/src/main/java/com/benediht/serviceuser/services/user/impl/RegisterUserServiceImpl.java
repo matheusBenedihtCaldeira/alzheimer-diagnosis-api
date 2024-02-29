@@ -6,10 +6,8 @@ import com.benediht.serviceuser.models.entities.UserEntity;
 import com.benediht.serviceuser.models.mapper.UserMapper;
 import com.benediht.serviceuser.repositories.UserRepository;
 import com.benediht.serviceuser.services.user.RegisterUserService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 @Service

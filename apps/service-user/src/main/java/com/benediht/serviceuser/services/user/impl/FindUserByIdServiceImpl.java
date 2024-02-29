@@ -1,10 +1,11 @@
 package com.benediht.serviceuser.services.user.impl;
 
 import com.benediht.serviceuser.exceptions.UserNotFoundException;
+import com.benediht.serviceuser.models.dto.FindUserByIdResponseDTO;
 import com.benediht.serviceuser.models.entities.UserEntity;
+import com.benediht.serviceuser.models.mapper.UserMapper;
 import com.benediht.serviceuser.repositories.UserRepository;
 import com.benediht.serviceuser.services.user.FindUserByIdService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -15,16 +16,18 @@ import org.springframework.stereotype.Service;
 public class FindUserByIdServiceImpl implements FindUserByIdService {
 
     private final UserRepository repository;
+    private final UserMapper userMapper;
 
     @Override
-    public UserEntity findUserById(Long id) {
+    public FindUserByIdResponseDTO findUserById(Long id) {
         try {
-            log.info("Find User By Id Service ::: Received id: {}", id);
+            log.info("Received id: {}", id);
             UserEntity user = repository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found!"));
-            log.info("Find User By Id Service ::: User found: {}", user);
-            return user;
+            FindUserByIdResponseDTO userDTO = userMapper.userEntityToUserResponse(user);
+            log.info("User found: {}", userDTO);
+            return userDTO;
         }catch (Exception e){
-            log.error("Find User By Id Service ::: Error: {}",e.getMessage());
+            log.error("Error: {}",e.getMessage());
             throw new RuntimeException(e);
         }
     }

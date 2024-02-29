@@ -6,12 +6,9 @@ import com.benediht.serviceuser.models.entities.UserEntity;
 import com.benediht.serviceuser.models.mapper.UserMapper;
 import com.benediht.serviceuser.repositories.UserRepository;
 import com.benediht.serviceuser.services.user.UpdateUserService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.apache.catalina.User;
 import org.springframework.beans.BeanUtils;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,7 +17,6 @@ import org.springframework.stereotype.Service;
 public class UpdateUserServiceImpl implements UpdateUserService {
 
     private final UserRepository repository;
-    private final FindUserByIdServiceImpl findUserByIdService;
     private final UserMapper userMapper;
 
     @Override
@@ -28,7 +24,7 @@ public class UpdateUserServiceImpl implements UpdateUserService {
         try{
             if (!userExists(id)) throw new UserNotFoundException("User not found!");
             UserEntity userWithDataToUpdate = userMapper.userDtoToUserEntity(data);
-            UserEntity userFromDB = findUserByIdService.findUserById(id);
+            UserEntity userFromDB = repository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found!"));
             updateData(userWithDataToUpdate, userFromDB);
             repository.save(userFromDB);
         }catch (Exception e){

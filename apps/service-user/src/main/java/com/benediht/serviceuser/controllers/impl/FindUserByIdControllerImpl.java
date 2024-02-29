@@ -1,6 +1,7 @@
 package com.benediht.serviceuser.controllers.impl;
 
 import com.benediht.serviceuser.controllers.FindUserByIdController;
+import com.benediht.serviceuser.models.dto.FindUserByIdResponseDTO;
 import com.benediht.serviceuser.models.entities.UserEntity;
 import com.benediht.serviceuser.services.user.impl.FindUserByIdServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -18,10 +19,10 @@ public class FindUserByIdControllerImpl implements FindUserByIdController {
     private final FindUserByIdServiceImpl service;
 
     @Override
-    public ResponseEntity<UserEntity> findUserById(Long id) {
+    public ResponseEntity<FindUserByIdResponseDTO> findUserById(Long id) {
         try {
             log.info("Request received: id:{}", id);
-            UserEntity user = service.findUserById(id);
+            FindUserByIdResponseDTO user = service.findUserById(id);
             return ResponseEntity.ok().body(user);
         }catch (Exception e){
             log.error("{}", e.getMessage());

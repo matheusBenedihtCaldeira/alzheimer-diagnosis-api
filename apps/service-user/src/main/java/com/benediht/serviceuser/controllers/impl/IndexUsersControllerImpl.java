@@ -1,6 +1,7 @@
 package com.benediht.serviceuser.controllers.impl;
 
 import com.benediht.serviceuser.controllers.IndexUsersController;
+import com.benediht.serviceuser.models.dto.UserResponseDTO;
 import com.benediht.serviceuser.models.entities.UserEntity;
 import com.benediht.serviceuser.services.user.impl.IndexUsersServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +21,9 @@ public class IndexUsersControllerImpl implements IndexUsersController {
     private final IndexUsersServiceImpl service;
 
     @Override
-    public ResponseEntity<List<UserEntity>> index() {
+    public ResponseEntity<List<UserResponseDTO>> index() {
         try {
-            List<UserEntity> users = service.indexUsers();
+            List<UserResponseDTO> users = service.indexUsers();
             return ResponseEntity.ok().body(users);
         }catch (Exception e){
             log.error("{}", e.getMessage());

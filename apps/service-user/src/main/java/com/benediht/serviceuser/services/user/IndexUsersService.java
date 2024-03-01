@@ -1,10 +1,10 @@
 package com.benediht.serviceuser.services.user;
 
-import com.benediht.serviceuser.models.entities.UserEntity;
+import com.benediht.serviceuser.models.dto.UserResponseDTO;
 
 import java.util.List;
 
 public interface IndexUsersService {
 
-    List<UserEntity> indexUsers();
+    List<UserResponseDTO> indexUsers();
 }

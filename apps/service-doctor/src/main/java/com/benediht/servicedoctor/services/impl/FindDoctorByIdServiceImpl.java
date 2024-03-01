@@ -1,6 +1,6 @@
 package com.benediht.servicedoctor.services.impl;
 
-import com.benediht.servicedoctor.models.dto.FindDoctorByIdResponseDTO;
+import com.benediht.servicedoctor.models.dto.DoctorResponseDTO;
 import com.benediht.servicedoctor.models.entities.DoctorEntity;
 import com.benediht.servicedoctor.models.mapper.DoctorMapper;
 import com.benediht.servicedoctor.repositories.DoctorRepository;
@@ -17,9 +17,9 @@ public class FindDoctorByIdServiceImpl implements FindDoctorByIdService {
     private final DoctorRepository repository;
     private final DoctorMapper mapper;
     @Override
-    public FindDoctorByIdResponseDTO findDoctorById(Long id) {
+    public DoctorResponseDTO findDoctorById(Long id) {
         DoctorEntity doctor = repository.findById(id).get();
-        FindDoctorByIdResponseDTO doctorDTO = mapper.doctorEntityToDoctorDTO(doctor);
+        DoctorResponseDTO doctorDTO = mapper.doctorEntityToDoctorDTO(doctor);
         return doctorDTO;
     }
 }

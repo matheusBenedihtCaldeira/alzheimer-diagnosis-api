@@ -1,7 +1,7 @@
 package com.benediht.servicedoctor.controllers.impl;
 
 import com.benediht.servicedoctor.controllers.FindDoctorByIdController;
-import com.benediht.servicedoctor.models.dto.FindDoctorByIdResponseDTO;
+import com.benediht.servicedoctor.models.dto.DoctorResponseDTO;
 import com.benediht.servicedoctor.services.impl.FindDoctorByIdServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +15,8 @@ public class FindDoctorByIdControllerImpl implements FindDoctorByIdController {
 
     private final FindDoctorByIdServiceImpl service;
     @Override
-    public ResponseEntity<FindDoctorByIdResponseDTO> findDoctorById(Long id) {
-        FindDoctorByIdResponseDTO doctorDTO = service.findDoctorById(id);
+    public ResponseEntity<DoctorResponseDTO> findDoctorById(Long id) {
+        DoctorResponseDTO doctorDTO = service.findDoctorById(id);
         return ResponseEntity.ok().body(doctorDTO);
     }
 }

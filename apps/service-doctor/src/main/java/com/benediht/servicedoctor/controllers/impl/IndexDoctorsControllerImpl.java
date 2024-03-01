@@ -1,6 +1,7 @@
 package com.benediht.servicedoctor.controllers.impl;
 
 import com.benediht.servicedoctor.controllers.IndexDoctorsController;
+import com.benediht.servicedoctor.models.dto.DoctorResponseDTO;
 import com.benediht.servicedoctor.models.entities.DoctorEntity;
 import com.benediht.servicedoctor.services.impl.IndexDoctorsServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +19,8 @@ public class IndexDoctorsControllerImpl implements IndexDoctorsController {
     private final IndexDoctorsServiceImpl service;
 
     @Override
-    public ResponseEntity<List<DoctorEntity>> indexDoctors() {
-        List<DoctorEntity> doctors = service.indexDoctors();
+    public ResponseEntity<List<DoctorResponseDTO>> indexDoctors() {
+        List<DoctorResponseDTO> doctors = service.indexDoctors();
         return ResponseEntity.ok().body(doctors);
     }
 }

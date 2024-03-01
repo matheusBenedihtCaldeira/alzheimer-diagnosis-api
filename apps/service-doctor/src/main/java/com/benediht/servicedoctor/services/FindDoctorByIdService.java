@@ -1,8 +1,8 @@
 package com.benediht.servicedoctor.services;
 
-import com.benediht.servicedoctor.models.dto.FindDoctorByIdResponseDTO;
+import com.benediht.servicedoctor.models.dto.DoctorResponseDTO;
 
 public interface FindDoctorByIdService {
 
-    FindDoctorByIdResponseDTO findDoctorById(Long id);
+    DoctorResponseDTO findDoctorById(Long id);
 }

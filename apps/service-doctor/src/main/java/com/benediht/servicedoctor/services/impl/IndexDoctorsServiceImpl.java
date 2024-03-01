@@ -1,6 +1,8 @@
 package com.benediht.servicedoctor.services.impl;
 
+import com.benediht.servicedoctor.models.dto.DoctorResponseDTO;
 import com.benediht.servicedoctor.models.entities.DoctorEntity;
+import com.benediht.servicedoctor.models.mapper.DoctorMapper;
 import com.benediht.servicedoctor.repositories.DoctorRepository;
 import com.benediht.servicedoctor.services.IndexDoctorsService;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +15,11 @@ import java.util.List;
 public class IndexDoctorsServiceImpl implements IndexDoctorsService {
 
     private final DoctorRepository repository;
+    private final DoctorMapper mapper;
     @Override
-    public List<DoctorEntity> indexDoctors() {
+    public List<DoctorResponseDTO> indexDoctors() {
         List<DoctorEntity> doctors = repository.findAll();
-        return doctors;
+        List<DoctorResponseDTO> doctorsDTO = doctors.stream().map(mapper::doctorEntityToDoctorDTO).toList();
+        return doctorsDTO;
     }
 }

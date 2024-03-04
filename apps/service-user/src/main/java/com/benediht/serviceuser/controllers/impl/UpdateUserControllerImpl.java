@@ -19,13 +19,8 @@ public class UpdateUserControllerImpl implements UpdateUserController {
 
     @Override
     public ResponseEntity<Void> update(Long id, UserDTO data) {
-        try {
-            log.info("Request received: id={} data: {}", id, data);
-            service.updateUser(id, data);
-            return ResponseEntity.noContent().build();
-        }catch (Exception e){
-            log.error(e.getMessage());
-            throw new RuntimeException(e.getMessage());
-        }
+        log.info("Request received: id={} data: {}", id, data);
+        service.updateUser(id, data);
+        return ResponseEntity.noContent().build();
     }
 }

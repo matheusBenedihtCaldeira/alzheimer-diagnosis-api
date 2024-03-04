@@ -20,15 +20,10 @@ public class FindUserByIdServiceImpl implements FindUserByIdService {
 
     @Override
     public UserResponseDTO findUserById(Long id) {
-        try {
-            log.info("Received id: {}", id);
-            UserEntity user = repository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found!"));
-            UserResponseDTO userDTO = userMapper.userEntityToUserResponse(user);
-            log.info("User found: {}", userDTO);
-            return userDTO;
-        }catch (Exception e){
-            log.error("Error: {}",e.getMessage());
-            throw new RuntimeException(e);
-        }
+        log.info("Received id: {}", id);
+        UserEntity user = repository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found!"));
+        UserResponseDTO userDTO = userMapper.userEntityToUserResponse(user);
+        log.info("User found: {}", userDTO);
+        return userDTO;
     }
 }

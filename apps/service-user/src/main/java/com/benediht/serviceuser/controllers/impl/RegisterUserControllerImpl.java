@@ -24,14 +24,9 @@ public class RegisterUserControllerImpl implements RegisterUserController {
 
     @Override
     public ResponseEntity<UserEntity> register(UserDTO data) {
-        try{
-            log.info("Request received: {}", data);
-            UserEntity user = service.register(data);
-            URI uri = ServletUriComponentsBuilder.fromUriString("http://localhost:8001/api/user/").path("{id}").buildAndExpand(user.getId()).toUri();
-            return ResponseEntity.created(uri).build();
-        }catch (Exception e){
-            log.error("{}", e.getMessage());
-            throw new RuntimeException(e.getMessage());
-        }
+        log.info("Request received: {}", data);
+        UserEntity user = service.register(data);
+        URI uri = ServletUriComponentsBuilder.fromUriString("http://localhost:8001/api/user/").path("{id}").buildAndExpand(user.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 }

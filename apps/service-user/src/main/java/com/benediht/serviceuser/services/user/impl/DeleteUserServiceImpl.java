@@ -17,13 +17,12 @@ public class DeleteUserServiceImpl implements DeleteUserService {
 
     @Override
     public void delete(Long id) {
-        try{
-            UserEntity user = repository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found!"));
-            log.info("Deleting user with id: {}", user.getId());
-            repository.delete(user);
-        }catch (Exception e){
-            log.error("{}", e.getMessage());
-            throw new RuntimeException(e.getMessage());
-        }
+        UserEntity user = findUserById(id);
+        log.info("Deleting user with id: {}", user.getId());
+        repository.delete(user);
+    }
+
+    private UserEntity findUserById(Long id){
+        return repository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found!"));
     }
 }

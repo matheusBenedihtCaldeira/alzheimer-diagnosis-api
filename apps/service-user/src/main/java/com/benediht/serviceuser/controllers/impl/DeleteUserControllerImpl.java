@@ -1,7 +1,9 @@
 package com.benediht.serviceuser.controllers.impl;
 
 import com.benediht.serviceuser.controllers.DeleteUserController;
+import com.benediht.serviceuser.models.entities.UserEntity;
 import com.benediht.serviceuser.services.user.impl.DeleteUserServiceImpl;
+import com.benediht.serviceuser.services.user.impl.FindUserByIdServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +20,8 @@ public class DeleteUserControllerImpl implements DeleteUserController {
 
     @Override
     public ResponseEntity<Void> delete(Long id) {
-        try{
-            log.info("Request received: id={}", id);
-            service.delete(id);
-            return ResponseEntity.noContent().build();
-        }catch(Exception e){
-            log.error("{}", e.getMessage());
-            throw new RuntimeException(e.getMessage());
-        }
+        log.info("Request received: id={}", id);
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

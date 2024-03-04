@@ -19,13 +19,8 @@ public class FindUserByIdControllerImpl implements FindUserByIdController {
 
     @Override
     public ResponseEntity<UserResponseDTO> findUserById(Long id) {
-        try {
-            log.info("Request received: id:{}", id);
-            UserResponseDTO user = service.findUserById(id);
-            return ResponseEntity.ok().body(user);
-        }catch (Exception e){
-            log.error("{}", e.getMessage());
-            throw new RuntimeException(e.getMessage());
-        }
+        log.info("Request received: id:{}", id);
+        UserResponseDTO user = service.findUserById(id);
+        return ResponseEntity.ok().body(user);
     }
 }

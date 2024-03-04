@@ -1,5 +1,6 @@
 package com.benediht.servicedoctor.services.impl;
 
+import com.benediht.servicedoctor.exceptions.DoctorNotFoundException;
 import com.benediht.servicedoctor.models.dto.DoctorResponseDTO;
 import com.benediht.servicedoctor.models.entities.DoctorEntity;
 import com.benediht.servicedoctor.models.mapper.DoctorMapper;
@@ -18,8 +19,11 @@ public class FindDoctorByIdServiceImpl implements FindDoctorByIdService {
     private final DoctorMapper mapper;
     @Override
     public DoctorResponseDTO findDoctorById(Long id) {
-        DoctorEntity doctor = repository.findById(id).get();
+        log.info("Received id: {}", id);
+        DoctorEntity doctor = repository.findById(id).orElseThrow(() -> new DoctorNotFoundException("Doctor not found!"));
         DoctorResponseDTO doctorDTO = mapper.doctorEntityToDoctorDTO(doctor);
+        log.info("Doctor found: {}", doctorDTO);
         return doctorDTO;
+
     }
 }

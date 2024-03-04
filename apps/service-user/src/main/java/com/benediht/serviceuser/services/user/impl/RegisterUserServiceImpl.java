@@ -20,17 +20,13 @@ public class RegisterUserServiceImpl implements RegisterUserService {
 
     @Override
     public UserEntity register(UserDTO data) {
-        try{
-            if(emailAlredyRegistered(data.email())) throw new UserAlreadyExistsException("E-mail already in use");
-            log.info("Registering new user {}", data);
-            UserEntity user = userMapper.userDtoToUserEntity(data);
-            UserEntity savedUser = repository.save(user);
-            log.info("User saved successfully, user id: {}", savedUser.getId());
-            return savedUser;
-        }catch (Exception e){
-            log.error("Register user service ::: Error registering user: {}", e.getMessage());
-            throw new RuntimeException("Error registering user:", e);
-        }
+        if(emailAlredyRegistered(data.email())) throw new UserAlreadyExistsException("E-mail already in use");
+        log.info("Registering new user {}", data);
+        UserEntity user = userMapper.userDtoToUserEntity(data);
+        UserEntity savedUser = repository.save(user);
+        log.info("User saved successfully, user id: {}", savedUser.getId());
+        return savedUser;
+
     }
 
     private boolean emailAlredyRegistered(String email){

@@ -21,9 +21,8 @@ public class UpdateUserServiceImpl implements UpdateUserService {
 
     @Override
     public void updateUser(Long id, UserDTO data) {
-        if (!userExists(id)) throw new UserNotFoundException("User not found!");
-        UserEntity userWithDataToUpdate = userMapper.userDtoToUserEntity(data);
         UserEntity userFromDB = findUser(id);
+        UserEntity userWithDataToUpdate = userMapper.userDtoToUserEntity(data);
         updateData(userWithDataToUpdate, userFromDB);
         repository.save(userFromDB);
     }
@@ -33,11 +32,7 @@ public class UpdateUserServiceImpl implements UpdateUserService {
         dataToUpdate.setCreatedAt(dataFromDB.getCreatedAt());
         BeanUtils.copyProperties(dataToUpdate, dataFromDB);
     }
-    private boolean userExists(Long id){
-        return repository.findById(id).isPresent();
-    }
-
     private UserEntity findUser(Long id){
-        return repository.findById(id).get();
+        return repository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found!"));
     }
 }

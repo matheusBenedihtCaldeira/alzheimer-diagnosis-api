@@ -1,5 +1,7 @@
 package com.benediht.servicedoctor.services.impl;
 
+import com.benediht.servicedoctor.exceptions.DoctorAlredyRegisteredException;
+import com.benediht.servicedoctor.exceptions.DoctorNotFoundException;
 import com.benediht.servicedoctor.models.dto.DoctorDTO;
 import com.benediht.servicedoctor.models.entities.DoctorEntity;
 import com.benediht.servicedoctor.models.mapper.DoctorMapper;
@@ -17,10 +19,14 @@ public class UpdateDoctorServiceImpl implements UpdateDoctorService {
     private final DoctorMapper mapper;
     @Override
     public void updateDoctor(Long id,DoctorDTO data) {
-        DoctorEntity doctorFromDB = repository.findById(id).get();
+        DoctorEntity doctorFromDB = findDoctorById(id);
         DoctorEntity dataToUpdate = mapper.doctorDtoToDoctorEntitty(data);
         update(doctorFromDB, dataToUpdate);
         repository.save(doctorFromDB);
+    }
+
+    private DoctorEntity findDoctorById(Long id){
+        return repository.findById(id).orElseThrow(() -> new DoctorNotFoundException("Doctor not found!"));
     }
 
     private void update(DoctorEntity doctorFromDB, DoctorEntity doctorWithDataToUpdate){

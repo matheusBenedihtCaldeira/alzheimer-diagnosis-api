@@ -12,9 +12,16 @@ import java.time.Instant;
 public class ControllerExceptionHandle {
 
     @ExceptionHandler(DoctorNotFoundException.class)
-    public ResponseEntity<StandardError> doctorNotFoundException(DoctorNotFoundException e, HttpServletRequest req){
+    public ResponseEntity<StandardError> doctorNotFoundException(DoctorNotFoundException e, HttpServletRequest req) {
         HttpStatus status = HttpStatus.NOT_FOUND;
         StandardError err = new StandardError(Instant.now(), status.value(), "Not Found!", e.getMessage(), req.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
+
+    @ExceptionHandler(DoctorAlredyRegisteredException.class)
+    public ResponseEntity<StandardError> doctorAlredyRegisteredException(DoctorAlredyRegisteredException e, HttpServletRequest req) {
+        HttpStatus status = HttpStatus.CONFLICT;
+        StandardError err = new StandardError(Instant.now(), status.value(), "Doctor already registered", e.getMessage(), req.getRequestURI());
         return ResponseEntity.status(status).body(err);
     }
 }

@@ -29,8 +29,6 @@ public class DoctorEntity {
     @Column(unique = true, nullable = false)
     private String email;
     @Column(nullable = false)
-    private String cellphone;
-    @Column(nullable = false)
     private String password;
     @CreationTimestamp
     private LocalDateTime createdAt;

@@ -5,6 +5,5 @@ public record DoctorResponseDTO(
         String firstName,
         String lastName,
         String crm,
-        String email,
-        String cellphone
+        String email
 ) {}

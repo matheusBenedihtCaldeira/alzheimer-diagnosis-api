@@ -9,6 +9,5 @@ public record DoctorDTO(
         @NotBlank String lastName,
         @NotBlank String crm,
         @NotBlank @Email String email,
-        @NotBlank String cellphone,
         @NotBlank String password
 ) {}

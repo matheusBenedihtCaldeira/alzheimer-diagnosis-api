@@ -1,6 +1,5 @@
 package com.benediht.servicedoctor.services.impl;
 
-import com.benediht.servicedoctor.exceptions.DoctorAlredyRegisteredException;
 import com.benediht.servicedoctor.exceptions.DoctorNotFoundException;
 import com.benediht.servicedoctor.models.dto.DoctorDTO;
 import com.benediht.servicedoctor.models.entities.DoctorEntity;

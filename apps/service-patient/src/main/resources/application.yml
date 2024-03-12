@@ -1,15 +1,15 @@
-#Application config
+#service config
 spring:
   application:
-    name: service-doctor
+    name: service-patient
   config:
     import: "configserver:"
   profiles:
     activete: test
-#Server config
+#server
 server:
-  port: 8002
-#Eureka config
+  port: 8003
+#eureka config
 eureka:
   client:
     fetch-registry: false

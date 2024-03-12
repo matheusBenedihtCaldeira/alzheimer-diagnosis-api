@@ -19,6 +19,7 @@
     <module>config-server</module>
     <module>service-user</module>
     <module>service-doctor</module>
+    <module>service-patient</module>
   </modules>
 
 </project>

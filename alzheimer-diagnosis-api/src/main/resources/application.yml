@@ -1,0 +1,7 @@
+#Spring config
+spring:
+  application:
+    name: java-alzheimer-diagnosis-api
+  profiles:
+    active:
+      - test

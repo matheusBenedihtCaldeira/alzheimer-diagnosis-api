@@ -20,7 +20,7 @@ public class RegisterUserControllerImpl implements RegisterUserController {
 
     @Override
     public ResponseEntity<UserEntity> register(UserDTO data) {
-       log.info("Data received: {}", data);
+        log.info("Request received");
         UserEntity user = service.register(data);
         return ResponseEntity.ok().body(user);
     }

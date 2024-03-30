@@ -23,7 +23,7 @@ public class RegisterUserServiceImpl implements RegisterUserService {
         UserEntity user = userMapper.userDtoToUserEntity(data);
         log.info("Data converted: {}", user);
         UserEntity savedUser = repository.save(user);
-        log.info("User successfully registered}");
+        log.info("User successfully registered!");
         return savedUser;
     }
 }

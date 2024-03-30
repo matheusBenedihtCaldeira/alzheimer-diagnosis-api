@@ -5,11 +5,12 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record UserDTO(
+public record DoctorDTO(
         Long id,
         @NotBlank String firstName,
         @NotBlank String lastName,
+        @NotBlank String crm,
         @NotBlank @Email String email,
         @NotNull Role role,
         @NotBlank String password
-) {}
+){}

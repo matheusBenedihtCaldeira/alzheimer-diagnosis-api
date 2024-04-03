@@ -1,6 +1,7 @@
 package com.alzheimer.diagnosis.api.models.mapper;
 
 import com.alzheimer.diagnosis.api.models.dto.DoctorDTO;
+import com.alzheimer.diagnosis.api.models.dto.DoctorResponseDTO;
 import com.alzheimer.diagnosis.api.models.entities.DoctorEntity;
 import org.mapstruct.Mapper;
 
@@ -8,4 +9,5 @@ import org.mapstruct.Mapper;
 public interface DoctorMapper {
 
     DoctorEntity doctorDtoToDoctorEntity(DoctorDTO data);
+    DoctorResponseDTO doctorEntityToDoctorResponse(DoctorEntity data);
 }

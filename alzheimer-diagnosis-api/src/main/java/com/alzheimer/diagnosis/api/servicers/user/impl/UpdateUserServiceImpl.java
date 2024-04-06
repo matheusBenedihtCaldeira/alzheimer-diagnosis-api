@@ -1,6 +1,6 @@
 package com.alzheimer.diagnosis.api.servicers.user.impl;
 
-import com.alzheimer.diagnosis.api.exceptions.UserAlreadyRegisteredException;
+import com.alzheimer.diagnosis.api.exceptions.EmailAlreadyInUseException;
 import com.alzheimer.diagnosis.api.exceptions.UserNotFoundException;
 import com.alzheimer.diagnosis.api.models.dto.UserDTO;
 import com.alzheimer.diagnosis.api.models.entities.UserEntity;
@@ -22,7 +22,7 @@ public class UpdateUserServiceImpl implements UpdateUserService {
 
     @Override
     public void update(Long id, UserDTO data) {
-        if(emailAlreadyInUser(data.email())) throw new UserAlreadyRegisteredException("E-mail already in use!");
+        if(emailAlreadyInUser(data.email())) throw new EmailAlreadyInUseException("E-mail already in use!");
         UserEntity userFromDB = findUserById(id);
         UserEntity userWithDataToUpdate = userMapper.userDtoToUserEntity(data);
         updateData(userWithDataToUpdate, userFromDB);

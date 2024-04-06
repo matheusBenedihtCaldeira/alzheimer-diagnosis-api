@@ -18,10 +18,17 @@ public class ControllerExceptionHandle {
         return ResponseEntity.status(status).body(err);
     }
 
-    @ExceptionHandler(UserAlreadyRegisteredException.class)
-    public ResponseEntity<StandardError> userAlreadyRegistered(UserAlreadyRegisteredException e, HttpServletRequest req){
+    @ExceptionHandler(DoctorNotFoundException.class)
+    public ResponseEntity<StandardError> doctorNotFoundException(DoctorNotFoundException e, HttpServletRequest req){
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        StandardError err = new StandardError(Instant.now(), status.value(), "Doctor not found!", e.getMessage(), req.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
+
+    @ExceptionHandler(EmailAlreadyInUseException.class)
+    public ResponseEntity<StandardError> doctorAlreadyRegisteredException(EmailAlreadyInUseException e, HttpServletRequest req){
         HttpStatus status = HttpStatus.CONFLICT;
-        StandardError err = new StandardError(Instant.now(), status.value(), "E-mail already registered!", e.getMessage(), req.getRequestURI());
+        StandardError err = new StandardError(Instant.now(), status.value(), "E-mail already in use!", e.getMessage(), req.getRequestURI());
         return ResponseEntity.status(status).body(err);
     }
 }

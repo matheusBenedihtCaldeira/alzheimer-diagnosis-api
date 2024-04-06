@@ -1,43 +1,40 @@
 package com.alzheimer.diagnosis.api.models.entities;
 
-import com.alzheimer.diagnosis.api.models.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
-@Data
 @Entity
-@Table(name = "tb_doctors")
+@Data
+@Table(name = "tb_exams")
 @AllArgsConstructor
 @NoArgsConstructor
-public class DoctorEntity {
+public class ExamEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JoinColumn(name = "patient_id")
+    private PatientEntity patientEntity;
     @Column(nullable = false)
-    private String firstName;
+    private Double age = (double) patientEntity.getAge();
     @Column(nullable = false)
-    private String lastName;
-    @Column(nullable = false, unique = true)
-    private String crm;
-    @Column(nullable = false, unique = true)
-    private String email;
-    @OneToMany(mappedBy = "doctor")
-    private List<PatientEntity> patients = new ArrayList<>();
+    private Double yearsOfEducation;
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    private Double miniMentalStateExamination;
     @Column(nullable = false)
-    private String password;
+    private Double clinicalDementiaRating;
+    @Column(nullable = false)
+    private Double normalizeWholeBrainVolume;
+    @Column(nullable = false)
+    private Double atlasScalingFactor;
     @CreationTimestamp
     private LocalDateTime createdAt;
-    @CreationTimestamp
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 }

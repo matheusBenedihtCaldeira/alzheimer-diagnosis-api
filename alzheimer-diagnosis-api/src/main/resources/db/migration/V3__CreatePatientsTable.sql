@@ -5,7 +5,7 @@ CREATE TABLE tb_patients(
     cpf VARCHAR(255) UNIQUE NOT NULL,
     gender CHAR(1) NOT NULL,
     date_of_birth DATE NOT NULL,
-    diagnosis VARCHAR(255)
-    created_at TIMESTAMP
+    diagnosis VARCHAR(255),
+    created_at TIMESTAMP,
     updated_at TIMESTAMP
 );

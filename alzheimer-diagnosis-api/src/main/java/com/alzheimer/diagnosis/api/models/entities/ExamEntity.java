@@ -20,12 +20,12 @@ public class ExamEntity {
     private Long id;
     @OneToOne
     @JoinColumn(name = "patient_id")
-    private PatientEntity patientEntity;
+    private PatientEntity patient;
     @ManyToOne
     @JoinColumn(name = "doctor_id")
-    private DoctorEntity doctorEntity;
+    private DoctorEntity doctor;
     @Column(nullable = false)
-    private Double age = (double) patientEntity.getAge();
+    private Double age;
     @Column(nullable = false)
     private Double yearsOfEducation;
     @Column(nullable = false)
@@ -40,4 +40,13 @@ public class ExamEntity {
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    @PrePersist
+    public void calculateAge() {
+        if (patient != null) {
+            this.age = (double) patient.getAge();
+        } else {
+            this.age = 0.0;
+        }
+    }
 }

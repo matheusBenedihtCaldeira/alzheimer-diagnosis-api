@@ -30,7 +30,7 @@ public class DoctorEntity {
     @Column(nullable = false, unique = true)
     private String email;
     @OneToMany(mappedBy = "doctor")
-    private List<PatientEntity> patients = new ArrayList<>();
+    private List<ExamEntity> patients = new ArrayList<>();
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;

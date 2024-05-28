@@ -1,4 +1,4 @@
-#Database config
+# Configuração do banco de dados
 spring:
   datasource:
     url: jdbc:h2:mem:testdb
@@ -7,4 +7,7 @@ spring:
   h2:
     console:
       enabled: true
+      settings:
+        web-allow-others: false
       path: /h2-console
+      web-allowed: true

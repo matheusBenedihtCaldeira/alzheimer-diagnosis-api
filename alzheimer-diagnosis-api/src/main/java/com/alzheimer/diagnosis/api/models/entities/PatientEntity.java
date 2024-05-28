@@ -18,9 +18,7 @@ import java.time.Period;
 @Table(name = "tb_patients")
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class PatientEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,10 +33,6 @@ public class PatientEntity {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dateOfBirth;
-    @JoinColumn(name = "doctor_id", nullable = false)
-    private DoctorEntity doctor;
-    @JoinColumn(name = "exam_id")
-    private ExamEntity exam;
     private String diagnosis;
     @CreationTimestamp
     private LocalDateTime createdAt;

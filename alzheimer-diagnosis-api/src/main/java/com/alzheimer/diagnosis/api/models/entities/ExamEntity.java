@@ -15,12 +15,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ExamEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @OneToOne
     @JoinColumn(name = "patient_id")
     private PatientEntity patientEntity;
+    @ManyToOne
+    @JoinColumn(name = "doctor_id")
+    private DoctorEntity doctorEntity;
     @Column(nullable = false)
     private Double age = (double) patientEntity.getAge();
     @Column(nullable = false)

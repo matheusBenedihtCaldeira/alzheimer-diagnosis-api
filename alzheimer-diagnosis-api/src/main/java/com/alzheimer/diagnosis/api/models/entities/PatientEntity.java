@@ -1,6 +1,7 @@
 package com.alzheimer.diagnosis.api.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,6 +41,7 @@ public class PatientEntity {
     private LocalDateTime updatedAt;
 
     @Transient
+    @JsonIgnore
     public int getAge(){
         LocalDate currentDate = LocalDate.now();
         return Period.between(dateOfBirth, currentDate).getYears();
